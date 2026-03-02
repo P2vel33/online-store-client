@@ -7,11 +7,11 @@ const AppRouter = () => {
   return (
     <Routes>
       {isAuth &&
-        authRoutes.map(({ path, element: Component }) => (
-          <Route key={path} path={path} element={<Component />} />
+        authRoutes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
         ))}
-      {publicRoutes.map(({ path, element: Component }) => {
-        return <Route key={path} path={path} element={<Component />} />;
+      {publicRoutes.map(({ path, element }) => {
+        return <Route key={path} path={path} element={element} />;
       })}
     </Routes>
   );
