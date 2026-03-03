@@ -5,11 +5,12 @@ import Shop from "../pages/Shop";
 import { Context } from "../index";
 
 const AppRouter = () => {
-  const { user, isAuth } = useContext(Context);
+  const { user } = useContext(Context);
   console.log(user);
+  console.log(user.isAuth);
   return (
     <Routes>
-      {isAuth && authRoutes.map(({ path, element }) => <Route key={path} path={path} element={element} />)}
+      {user.isAuth && authRoutes.map(({ path, element }) => <Route key={path} path={path} element={element} />)}
       {publicRoutes.map(({ path, element }) => {
         return <Route key={path} path={path} element={element} />;
       })}
