@@ -5,6 +5,7 @@ import { observer } from "mobx-react-lite";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "./index";
 import { check } from "./http/UserAPI";
+import { Spinner } from "react-bootstrap";
 
 const App = observer(() => {
   const { user } = useContext(Context);
@@ -19,6 +20,10 @@ const App = observer(() => {
         setLoading(false);
       });
   }, []);
+
+  if (loading) {
+    return <Spinner animation={"grow"} />;
+  }
   return (
     <BrowserRouter>
       <NavBar />

@@ -1,22 +1,10 @@
 import { makeAutoObservable } from "mobx";
-import PhotoIphone from "../assets/IPHONE-17-PRO.jpg";
 
 export default class DeviceStore {
   constructor() {
-    this._types = [
-      { id: 1, name: "Холодильники" },
-      { id: 2, name: "Смартфоны" },
-    ];
-    this._brands = [
-      { id: 1, name: "Samsung" },
-      { id: 2, name: "Apple" },
-    ];
-    this._devices = [
-      { id: 1, name: "IPHONE 12 PRO", price: 25000, rating: 4, img: PhotoIphone },
-      { id: 2, name: "IPHONE 12 PRO", price: 25000, rating: 4, img: PhotoIphone },
-      { id: 3, name: "IPHONE 12 PRO", price: 25000, rating: 4, img: PhotoIphone },
-      { id: 4, name: "IPHONE 12 PRO", price: 25000, rating: 4, img: PhotoIphone },
-    ];
+    this._types = [];
+    this._brands = [];
+    this._devices = [];
     this._selectedType = {};
     this._selectedBrand = {};
     makeAutoObservable(this);
