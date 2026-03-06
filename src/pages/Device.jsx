@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 import bigStar from "../assets/big-star.svg";
 import photoIphone from "../assets/IPHONE-17-PRO.jpg";
 import { useParams } from "react-router-dom";
+import { fetchOneDevice } from "../http/DeviceAPI";
 
 const Device = () => {
   const [device, setDevice] = useState({ info: [] });
   const { id } = useParams();
+  useEffect(() => {
+    fetchOneDevice(id).then((data) => setDevice(data));
+  }, []);
   return (
     <Container className="mt-3">
       <Row>
         <Col md={4}>
-          <Image width={300} height={300} src={photoIphone} />
+          <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img} />
         </Col>
         <Col md={4}>
           <Row className="d-flex flex-column align-items-center">

@@ -3,8 +3,9 @@ import { Button, Container } from "react-bootstrap";
 import CreateType from "../components/modals/CreateType";
 import CreateBrand from "../components/modals/CreateBrand";
 import CreateDevice from "../components/modals/CreateDevice";
+import { observer } from "mobx-react-lite";
 
-const AdminPanel = () => {
+const AdminPanel = observer(() => {
   const [brandVisible, setBrandVisible] = useState(false);
   const [typeVisible, setTypeVisible] = useState(false);
   const [deviceVisible, setDeviceVisible] = useState(false);
@@ -24,6 +25,6 @@ const AdminPanel = () => {
       <CreateDevice show={deviceVisible} onHide={() => setDeviceVisible(false)} />
     </Container>
   );
-};
+});
 
 export default AdminPanel;
