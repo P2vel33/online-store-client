@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Dropdown, Form, Modal, Row } from "react-bootstrap";
 import { Context } from "../../index";
-import { fetchBrand, fetchDevices, fetchTypes } from "../../http/DeviceAPI";
+import { createDevice, fetchBrand, fetchTypes } from "../../http/DeviceAPI";
 import { observer } from "mobx-react-lite";
 
 const CreateDevice = observer(({ show, onHide }) => {
@@ -24,10 +24,25 @@ const CreateDevice = observer(({ show, onHide }) => {
     setInfo(info.map((i) => (i.number === number ? { ...i, [key]: value } : i)));
   };
 
-  const addDevice = () => {};
+  const addDevice = () => {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("price", `${price}`);
+    formData.append("img", file);
+    formData.append("brandId", device.selectedBrand.id);
+    formData.append("typeId", device.selectedType.id);
+    formData.append("info", JSON.stringify(info));
+    console.log(name);
+    console.log(price);
+    console.log(file);
+    console.log(device.selectedBrand.id);
+    console.log(device.selectedType.id);
+    console.log(JSON.stringify(info));
+    createDevice(formData).then((data) => onHide());
+  };
 
   const selectFile = (e) => {
-    console.log(e);
+    setFile(e.target.files[0]);
   };
 
   useEffect(() => {
